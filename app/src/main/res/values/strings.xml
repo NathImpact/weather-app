@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">Nath\'s Weather</string>
+    <string name="today">Today</string>
+</resources>
