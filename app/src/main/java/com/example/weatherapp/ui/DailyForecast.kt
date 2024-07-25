@@ -24,7 +24,7 @@ import java.time.format.TextStyle
 
 @Composable
 fun DailyForecast(days: List<Day>, modifier: Modifier = Modifier) {
-    val daysIterator = days.drop(0).iterator()
+    val daysIterator =days.iterator()
     Column(modifier = modifier) {
         while (daysIterator.hasNext()) {
             DailyForecastItem(daysIterator.next())
@@ -40,13 +40,14 @@ fun DailyForecast(days: List<Day>, modifier: Modifier = Modifier) {
 fun DailyForecastItem(day: Day, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth().padding(5.dp)
     ) {
         Text(text = getDayOfWeek(day.time, LocalContext.current), modifier.weight(1F))
+        PrecipitationProbability(day.precipitation_probability_max, modifier.weight(1F))
         Image(
             painterResource(WeatherIcons.getWeatherType(day.weather_code).iconImg),
             contentDescription = null,
-            modifier = Modifier.size(50.dp).weight(1F)
+            modifier = Modifier.size(30.dp).weight(1F)
         )
         Text(text = "${day.temperature_2m_min.toInt()}/${day.temperature_2m_max.toInt()}°C", modifier.weight(1F))
         WindSpeed(day.wind_direction_10m_dominant.toFloat(), day.wind_speed_10m_max.toInt(), modifier.weight(1F))
@@ -55,12 +56,11 @@ fun DailyForecastItem(day: Day, modifier: Modifier = Modifier) {
 
 @Composable
 fun WindSpeed(direction: Float, speed: Int, modifier: Modifier) {
-    Row(modifier) {
-        println(direction)
+    Row(modifier.fillMaxWidth()) {
         Icon(
             Icons.AutoMirrored.Rounded.ArrowForward,
             contentDescription = null,
-            modifier = Modifier.rotate(direction)
+            modifier = modifier.rotate(direction)
         )
         Text(text = "${speed}km/h")
     }
@@ -75,6 +75,6 @@ private fun getDayOfWeek(dateStr: String, context: Context): String {
     return if (todaysDate == date) {
         context.getString(R.string.today)
     } else {
-        date.dayOfWeek.getDisplayName(TextStyle.FULL_STANDALONE, currentLocale)
+        date.dayOfWeek.getDisplayName(TextStyle.SHORT_STANDALONE, currentLocale)
     }
 }

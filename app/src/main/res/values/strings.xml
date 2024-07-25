@@ -1,4 +1,34 @@
 <resources>
     <string name="app_name" translatable="false">Nath\'s Weather</string>
     <string name="today">Today</string>
+    <string name="current_temperature">%d° / %d° Feels like %d°</string>
+
+    <string name="clear_sky">Clear Sky</string>
+    <string name="mainly_clear">Mainly Clear</string>
+    <string name="partly_cloudy">Partly Cloudy</string>
+    <string name="overcast">"Overcast"</string>
+    <string name="fog">"Fog"</string>
+    <string name="drizzle_l">Drizzle, Light</string>
+    <string name="drizzle_m">Drizzle, Medium</string>
+    <string name="drizzle_h">Drizzle, Heavy</string>
+    <string name="freezing_drizzle_l">Freezing Drizzle, Light</string>
+    <string name="freezing_drizzle_h">Freezing Drizzle, Heavy</string>
+    <string name="rain_l">Rain, Light</string>
+    <string name="rain_m">Rain, Medium</string>
+    <string name="rain_h">Rain, Heavy</string>
+    <string name="freezing_rain_l">Freezing Rain, Light</string>
+    <string name="freezing_rain_h">Freezing Rain, Heavy</string>
+    <string name="snow_fall_l">Snow Fall, Light</string>
+    <string name="snow_fall_m">Snow Fall, Medium</string>
+    <string name="snow_fall_h">Snow Fall, Heavy</string>
+    <string name="snow_grains">Snow Grains</string>
+    <string name="rain_showers_l">Rain Showers, Light</string>
+    <string name="rain_showers_m">Rain Showers, Medium</string>
+    <string name="rain_showers_h">Rain Showers, Heavy</string>
+    <string name="snow_showers_l">Snow Showers, Light</string>
+    <string name="snow_showers_h">Snow Showers, Heavy</string>
+    <string name="thunderstorm">"Thunderstorm"</string>
+    <string name="thunderstorm_hail_l">Thunderstorm with Hail, Light</string>
+    <string name="thunderstorm_hail_h">Thunderstorm with Hail, Heavy</string>
+    <string name="unknown_weather">Unknown Weather</string>
 </resources>

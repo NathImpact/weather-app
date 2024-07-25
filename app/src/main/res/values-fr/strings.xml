@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="today">Aujourd\'hui</string>
+    <string name="current_temperature">%d° / %d° Ressenti %d°</string>
+
+    <string name="clear_sky">Plein Soleil</string>
+    <string name="mainly_clear">Ciel Dégagé</string>
+    <string name="partly_cloudy">Partiellement Nuageux</string>
+    <string name="overcast">"Nuageux"</string>
+    <string name="fog">"Brouillard"</string>
+    <string name="drizzle_l">Bruine, Faible</string>
+    <string name="drizzle_m">Bruine, Modérée</string>
+    <string name="drizzle_h">Bruine, Intense</string>
+    <string name="freezing_drizzle_l">Bruine Glaçante, Faible</string>
+    <string name="freezing_drizzle_h">Bruine Glaçante, Intense</string>
+    <string name="rain_l">Pluie, Faible</string>
+    <string name="rain_m">Pluie, Modérée</string>
+    <string name="rain_h">Pluie, Intense</string>
+    <string name="freezing_rain_l">Pluie Glaçante, Faible</string>
+    <string name="freezing_rain_h">Pluie Glaçante, Intense</string>
+    <string name="snow_fall_l">Neige, Faible</string>
+    <string name="snow_fall_m">Neige, Modérée</string>
+    <string name="snow_fall_h">Neige, Intense</string>
+    <string name="snow_grains">Grain de Neige</string>
+    <string name="rain_showers_l">Averses, Faibles</string>
+    <string name="rain_showers_m">Averses, Modérées</string>
+    <string name="rain_showers_h">Averses, Intenses</string>
+    <string name="snow_showers_l">Averses de Neige, Faibles</string>
+    <string name="snow_showers_h">Averses de Neige, Intenses</string>
+    <string name="thunderstorm">"Orage"</string>
+    <string name="thunderstorm_hail_l">Orage avec Grêlons, Faible</string>
+    <string name="thunderstorm_hail_h">Orage avec Grêlons, Intense</string>
+    <string name="unknown_weather">Météo Inconnue</string>
 </resources>

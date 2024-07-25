@@ -33,8 +33,8 @@ fun HomeScreen(
         floatingActionButton = { AddCityButton { navController.navigate(WeatherScreen.CITY.name) } }
     ) { innerPadding ->
         val pagerState = rememberPagerState(pageCount = { cities.size })
-        val state = rememberScrollState()
-        Column(Modifier.verticalScroll(state)) {
+        val scrollState = rememberScrollState()
+        Column(Modifier.verticalScroll(scrollState)) {
             HorizontalPager(
                 state  = pagerState,
                 modifier = Modifier.padding(innerPadding)
