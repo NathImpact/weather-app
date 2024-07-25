@@ -40,23 +40,22 @@ fun DailyForecast(days: List<Day>, modifier: Modifier = Modifier) {
 fun DailyForecastItem(day: Day, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = modifier.fillMaxWidth()
     ) {
-        Text(text = getDayOfWeek(day.time, LocalContext.current))
+        Text(text = getDayOfWeek(day.time, LocalContext.current), modifier.weight(1F))
         Image(
             painterResource(WeatherIcons.getWeatherType(day.weather_code).iconImg),
             contentDescription = null,
-            modifier = Modifier.size(50.dp)
+            modifier = Modifier.size(50.dp).weight(1F)
         )
-        Text(text = "${day.temperature_2m_min.toInt()}/${day.temperature_2m_max.toInt()}°C")
-        WindSpeed(day.wind_direction_10m_dominant.toFloat(), day.wind_speed_10m_max.toInt())
+        Text(text = "${day.temperature_2m_min.toInt()}/${day.temperature_2m_max.toInt()}°C", modifier.weight(1F))
+        WindSpeed(day.wind_direction_10m_dominant.toFloat(), day.wind_speed_10m_max.toInt(), modifier.weight(1F))
     }
 }
 
 @Composable
-fun WindSpeed(direction: Float, speed: Int) {
-    Row {
+fun WindSpeed(direction: Float, speed: Int, modifier: Modifier) {
+    Row(modifier) {
         println(direction)
         Icon(
             Icons.AutoMirrored.Rounded.ArrowForward,

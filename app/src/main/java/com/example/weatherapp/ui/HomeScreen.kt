@@ -5,7 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.Icon
@@ -31,7 +33,8 @@ fun HomeScreen(
         floatingActionButton = { AddCityButton { navController.navigate(WeatherScreen.CITY.name) } }
     ) { innerPadding ->
         val pagerState = rememberPagerState(pageCount = { cities.size })
-        Column {
+        val state = rememberScrollState()
+        Column(Modifier.verticalScroll(state)) {
             HorizontalPager(
                 state  = pagerState,
                 modifier = Modifier.padding(innerPadding)
@@ -39,7 +42,7 @@ fun HomeScreen(
                 if (cities.isNotEmpty()) CityForecast(cities[it])
             }
             Row(
-                Modifier.padding(bottom = 8.dp).fillMaxSize(),
+                Modifier.padding(vertical = 10.dp).fillMaxSize(),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.Bottom
             ) {

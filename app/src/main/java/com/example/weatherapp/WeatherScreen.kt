@@ -1,29 +1,26 @@
 package com.example.weatherapp
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.weatherapp.Utils.isInternetAvailable
 import com.example.weatherapp.data.City
-import com.example.weatherapp.ui.CityMainSurface
+import com.example.weatherapp.ui.CityChooserScreen
 import com.example.weatherapp.ui.HomeScreen
+import com.example.weatherapp.ui.NoInternetScreen
 
-enum class WeatherScreen(val title: String) {
-    HOME("Home"),
-    CITY("City"),
-    NO_INTERNET("No Internet")
+enum class WeatherScreen {
+    HOME,
+    CITY,
+    NO_INTERNET
 }
 
 val cities = mutableStateListOf<City>()
@@ -42,13 +39,10 @@ fun WeatherApp(
                 HomeScreen(cities, navController)
             }
             composable(route = WeatherScreen.CITY.name) {
-                CityMainSurface(onCitySelected = { onCityAdded(it, navController, cities) })
+                CityChooserScreen(onCitySelected = { onCityAdded(it, navController, cities) })
             }
             composable(route = WeatherScreen.NO_INTERNET.name) {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    Text("No Internet")
-                    Icon(painterResource(R.drawable.no_internet), null)
-                }
+                NoInternetScreen(onReloadClick = { if (it) navController.navigate(WeatherScreen.HOME.name) })
             }
         }
     }

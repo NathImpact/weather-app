@@ -27,7 +27,7 @@ fun CityForecast(
         DailyForecast(
             city.weatherData.days,
             modifier
-                .padding()
+                .padding(horizontal = 5.dp)
                 .background(
                     Color(0x337EAFE0),
                     RoundedCornerShape(15.dp)
