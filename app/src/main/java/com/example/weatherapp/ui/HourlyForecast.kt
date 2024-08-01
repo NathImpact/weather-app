@@ -54,7 +54,8 @@ fun HourForecast(hour: Hour, modifier: Modifier = Modifier) {
 fun PrecipitationProbability(precipitationProbability: Int, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.Center,
+        modifier = modifier
     ) {
         Icon(Icons.Filled.WaterDrop, null, modifier = Modifier.size(15.dp))
         Text(

@@ -20,24 +20,22 @@ fun CurrentDay(city: City, modifier: Modifier = Modifier) {
     val currentWeather = city.weatherData.current
     val dayWeather = city.weatherData.days[0]
     Column {
-        Text(
-            text = city.name,
-            style = MaterialTheme.typography.displayLarge.copy(fontWeight = FontWeight.ExtraBold),
-            modifier = modifier.fillMaxWidth()
-        )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = modifier.fillMaxWidth()
-        ) {
-            Text(
-                text = "${currentWeather.temperature_2m.toInt()}°",
-                style = MaterialTheme.typography.displayLarge.copy(fontWeight = FontWeight.SemiBold)
-            )
+        Row(modifier = modifier.padding(5.dp), verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(0.7F)) {
+                Text(
+                    text = city.name,
+                    style = MaterialTheme.typography.displayLarge.copy(fontWeight = FontWeight.ExtraBold),
+                    modifier = modifier.fillMaxWidth()
+                )
+                Text(
+                    text = "${currentWeather.temperature_2m.toInt()}°",
+                    style = MaterialTheme.typography.displayLarge.copy(fontWeight = FontWeight.SemiBold)
+                )
+            }
             Image(
                 painterResource(WeatherIcons.getWeatherType(currentWeather.weather_code).iconImg),
                 contentDescription = null,
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(100.dp).weight(0.3F)
             )
         }
         Text(

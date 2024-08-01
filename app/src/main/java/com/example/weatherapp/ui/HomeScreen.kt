@@ -26,11 +26,11 @@ import com.example.weatherapp.data.City
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
-    cities: MutableList<City>,
+    cities: List<City>,
     navController: NavHostController
 ) {
     Scaffold(
-        floatingActionButton = { AddCityButton { navController.navigate(WeatherScreen.CITY.name) } }
+        floatingActionButton = { AddCityButton { navController.navigate(WeatherScreen.CITY.name) } },
     ) { innerPadding ->
         val pagerState = rememberPagerState(pageCount = { cities.size })
         val scrollState = rememberScrollState()

@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Nath\'s Weather</string>
     <string name="today">Today</string>
     <string name="current_temperature">%d° / %d° Feels like %d°</string>
+    <string name="min_max_temperature" translatable="false">Min %d° / Max %d° C</string>
 
     <string name="clear_sky">Clear Sky</string>
     <string name="mainly_clear">Mainly Clear</string>

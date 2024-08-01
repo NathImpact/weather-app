@@ -1,30 +1,35 @@
 package com.example.weatherapp.ui
 
-import android.content.Context
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.weatherapp.R
+import androidx.compose.ui.window.Dialog
+import com.example.weatherapp.Utils.getDayOfWeek
 import com.example.weatherapp.data.Day
 import com.example.weatherapp.data.WeatherIcons
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.TextStyle
+
+private val showDialog = mutableStateOf(false)
+private val dayState = mutableStateOf<Day?>(null)
 
 @Composable
 fun DailyForecast(days: List<Day>, modifier: Modifier = Modifier) {
-    val daysIterator =days.iterator()
+    val daysIterator = days.iterator()
     Column(modifier = modifier) {
         while (daysIterator.hasNext()) {
             DailyForecastItem(daysIterator.next())
@@ -34,23 +39,28 @@ fun DailyForecast(days: List<Day>, modifier: Modifier = Modifier) {
             )
         }
     }
+    AnimatedVisibility(showDialog.value) { MinimalDialog() }
 }
 
 @Composable
 fun DailyForecastItem(day: Day, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.fillMaxWidth().padding(5.dp)
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(5.dp)
+            .clickable { showDialog.value = true ; dayState.value = day }
     ) {
-        Text(text = getDayOfWeek(day.time, LocalContext.current), modifier.weight(1F))
-        PrecipitationProbability(day.precipitation_probability_max, modifier.weight(1F))
+        Text(text = getDayOfWeek(day.time, LocalContext.current), modifier.weight(0.2F))
+        PrecipitationProbability(day.precipitation_probability_max, modifier.weight(0.15F))
         Image(
             painterResource(WeatherIcons.getWeatherType(day.weather_code).iconImg),
             contentDescription = null,
-            modifier = Modifier.size(30.dp).weight(1F)
+            modifier = Modifier.size(30.dp).weight(0.2F)
         )
-        Text(text = "${day.temperature_2m_min.toInt()}/${day.temperature_2m_max.toInt()}°C", modifier.weight(1F))
-        WindSpeed(day.wind_direction_10m_dominant.toFloat(), day.wind_speed_10m_max.toInt(), modifier.weight(1F))
+        Text(text = "${day.temperature_2m_min.toInt()}/${day.temperature_2m_max.toInt()}°C", modifier.weight(0.2F))
+        WindSpeed(day.wind_direction_10m_dominant.toFloat(), day.wind_speed_10m_max.toInt(), modifier.weight(0.25F))
     }
 }
 
@@ -66,15 +76,20 @@ fun WindSpeed(direction: Float, speed: Int, modifier: Modifier) {
     }
 }
 
-private fun getDayOfWeek(dateStr: String, context: Context): String {
-    val currentLocale = context.resources.configuration.locales[0]
-    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    val todaysDate = LocalDate.parse(LocalDate.now().toString(), formatter)
-    val date = LocalDate.parse(dateStr, formatter)
 
-    return if (todaysDate == date) {
-        context.getString(R.string.today)
-    } else {
-        date.dayOfWeek.getDisplayName(TextStyle.SHORT_STANDALONE, currentLocale)
+
+@Composable
+fun MinimalDialog() {
+    dayState.value?.also {
+        Dialog({ showDialog.value = false }) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                shape = RoundedCornerShape(16.dp),
+            ) {
+                DailyCard(it)
+            }
+        }
     }
 }
